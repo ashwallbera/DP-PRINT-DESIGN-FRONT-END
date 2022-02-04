@@ -21,20 +21,20 @@ export class AppComponent {
 
 
 
-    // if(localStorage.hasOwnProperty('user')){
-    //   let user: LoginModel[] = JSON.parse(""+localStorage.getItem('user'));
-    //   console.log(JSON.parse(""+localStorage.getItem('user')))
-    //   if(user[0].role == "user"){
-    //     this._router.navigate(['/', 'userpage']);
-    //   }
-    //   else if(user[0].role == "admin"){
-    //     this._router.navigate(['/', 'admin']);
-    //   }
+    if(localStorage.hasOwnProperty('user')){
+      let user: LoginModel[] = JSON.parse(""+localStorage.getItem('user'));
+      console.log(JSON.parse(""+localStorage.getItem('user')))
+      if(user[0].role == "user"){
+        this._router.navigate(['/', 'userpage']);
+      }
+      else if(user[0].role == "admin"){
+        this._router.navigate(['/', 'admin']);
+      }
       
-    // }
-    // else{
-    //   this._router.navigate(['/', 'signin'])
-    // }
+    }
+    else{
+      this._router.navigate(['/', 'signin'])
+    }
 
     
   }
