@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Products</h2>
 <mat-dialog-content >
-  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>ITEM SPECIFICATION</ng-template>

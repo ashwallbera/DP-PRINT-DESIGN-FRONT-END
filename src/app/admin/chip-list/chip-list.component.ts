@@ -41,6 +41,15 @@ export class ChipListComponent implements OnInit {
       this.category.splice(index, 1);
     }
   }
+  delete(event:any,year:any)
+  {
+    event.preventDefault(); //<--prevent default
+    event.stopPropagation();  //stop propagation
+    //this.data=this.data.filter(x=>x!=year) //<--remove the element from data
+    //if (this.value.value==year)
+    //    this.value.setValue(null) //<--if the value is the remove data, set null
+
+  }
 }
 
 interface Fruit {

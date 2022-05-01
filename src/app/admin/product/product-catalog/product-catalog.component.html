@@ -6,7 +6,7 @@
   <mat-form-field
     class="example-chip-list"
     appearance="fill"
-    style="width: 1000px"
+    style="width: 100%"
   >
     <mat-label>Enter Specification</mat-label>
     <mat-chip-list #chipList aria-label="Fruit selection">
@@ -38,11 +38,38 @@
       >
         <!-- Table Data is Form field-->
 
+        <!-- spec -->
         <mat-form-field appearance="outline">
-          <mat-label>PRODUCT IDENTIFICATION (SPECIFICATION)</mat-label>
-          <mat-select formControlName="identificationfc">
-            <mat-option></mat-option>
+          <mat-label>{{ specification[i].name }} </mat-label>
+          <mat-select #identityselected formControlName="identificationfc">
+            <mat-option *ngFor="let o of getIdentityArray(i)" [value]="o">
+              {{ o.name
+              }}
+            </mat-option>
           </mat-select>
+
+          <button mat-button matSuffix>
+            <mat-icon
+              class="mat-18"
+              (click)="removeIdentity(identityselected.value, i)"
+              >remove</mat-icon
+            >
+          </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Add Specification Identity</mat-label>
+          <input
+            #identityName
+            matInput
+            formControlName="identificationfcinput"
+          />
+          <button mat-button matSuffix>
+            <mat-icon
+              class="mat-18"
+              (click)="addIdentity(identityName.value, i)"
+              >add</mat-icon
+            >
+          </button>
         </mat-form-field>
       </tr>
     </table>

@@ -2,13 +2,13 @@
 <mat-form-field
   class="example-chip-list"
   appearance="fill"
-  style="width: 1000px"
+  style="width: 100%"
 >
   <mat-label>Enter Category</mat-label>
   <mat-chip-list #chipList aria-label="Fruit selection">
     <mat-chip *ngFor="let c of category" (removed)="remove(c)" >
       {{ c.name }}
-     
+
       <button matChipRemove>
         <mat-icon>cancel</mat-icon>
       </button>
