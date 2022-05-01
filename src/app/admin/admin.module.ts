@@ -26,6 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChipListComponent } from './chip-list/chip-list.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { AddProductComponent } from './product/add-product/add-product.component';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
     AdminHomeComponent,
     AdminProductComponent,
     ProductCatalogComponent,
-    ChipListComponent
+    ChipListComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +61,8 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatOptionModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
   ]
 })
 export class AdminModule { }
