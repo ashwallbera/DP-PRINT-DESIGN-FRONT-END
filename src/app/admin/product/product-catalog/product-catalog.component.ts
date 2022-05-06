@@ -13,7 +13,10 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ProductCatalogComponent implements OnInit {
   identityForm: FormGroup;
-
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  specification: Specification[] = [];
+  identityofIdentity: ListOfIdentification[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public product: ProductModel,
     public formBuilder: FormBuilder
@@ -24,10 +27,7 @@ export class ProductCatalogComponent implements OnInit {
     });
     this.specification = this.product.specification;
   }
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  specification: Specification[];
-  identityofIdentity: ListOfIdentification[] = [];
+ 
 
   ngOnInit(): void {
     //DYNAMIC FORM
@@ -49,15 +49,12 @@ export class ProductCatalogComponent implements OnInit {
       this.identityofIdentity.push({
         identity: [
           {
-            id: '',
             name: '',
-            productid: '',
-            specificationid: '',
+           
           },
         ],
       });
       this.specification.push({
-        id: '',
         name: value,
         identification: this.identityofIdentity[0].identity,
       });
@@ -103,9 +100,7 @@ export class ProductCatalogComponent implements OnInit {
     console.log(name);
     if (name != '') {
       this.identityofIdentity[index].identity.push({
-        id: '',
-        productid: '',
-        specificationid: '',
+       
         name: name,
       });
     }
@@ -120,6 +115,7 @@ export class ProductCatalogComponent implements OnInit {
   }
 
   removeIdentity(item: Identification, index: number) {
+    
     if (item.name != undefined) {
       this.identityofIdentity[index].identity.splice(index, 1);
       console.log(item);

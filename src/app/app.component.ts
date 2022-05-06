@@ -21,10 +21,10 @@ export class AppComponent {
 
 
 
-    if(localStorage.hasOwnProperty('user')){
-      let user: LoginModel[] = JSON.parse(""+localStorage.getItem('user'));
-      console.log(JSON.parse(""+localStorage.getItem('user')))
-      if(user[0].role == "user"){
+    if(localStorage.hasOwnProperty('dpuser')){
+      let user: LoginModel[] = JSON.parse(""+localStorage.getItem('dpuser'));
+      console.log(JSON.parse(""+localStorage.getItem('dpuser')))
+      if(user[0].role == "dpuser"){
         this._router.navigate(['/', 'userpage']);
       }
       else if(user[0].role == "admin"){

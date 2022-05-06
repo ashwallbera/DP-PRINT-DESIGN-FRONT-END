@@ -36,8 +36,8 @@ export class SigninComponent implements OnInit {
         if (data.length != 0) {
           //console.log(data);
           console.log('verified');
-          localStorage.setItem('user', JSON.stringify(data));
-          console.log(JSON.parse(""+localStorage.getItem('user')));
+          localStorage.setItem('dpuser', JSON.stringify(data));
+          console.log(JSON.parse(""+localStorage.getItem('dpuser')));
           
           this._router.navigate(['']).then(
             (nav) => {

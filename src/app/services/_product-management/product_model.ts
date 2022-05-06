@@ -9,5 +9,5 @@ export interface ProductModel{
     categoryid: string;
     category: Category[];
     specification: Specification[];
-    isDeleted: string ;
+    isDeleted: boolean ;
 }

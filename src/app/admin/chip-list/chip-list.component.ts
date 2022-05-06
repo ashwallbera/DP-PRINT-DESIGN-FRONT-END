@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER, I } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ProductModel } from 'src/app/services/_product-management/product_model';
 import { Category } from 'src/app/services/_product-management/category_model';
@@ -13,13 +13,15 @@ export class ChipListComponent implements OnInit {
   @Input() product: ProductModel; // Pass by Admin Product Component 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  category: Category[];
+  category: Category[] = [];
   constructor() {
     
   }
 
   ngOnInit(): void {
-    this.category = this.product.category; // Add current category
+    if(this.product != undefined){
+      this.category = this.product.category;// Add current category
+    }
   }
  
   add(event: MatChipInputEvent): void {
@@ -27,7 +29,7 @@ export class ChipListComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.category.push({ id:"asdasd",name: value });
+      this.category.push({name: value });
     }
 
     // Clear the input value
@@ -49,6 +51,11 @@ export class ChipListComponent implements OnInit {
     //if (this.value.value==year)
     //    this.value.setValue(null) //<--if the value is the remove data, set null
 
+  }
+
+  //This method use by add product to get the category
+  getProduct(): Category[]{
+    return this.category;
   }
 }
 

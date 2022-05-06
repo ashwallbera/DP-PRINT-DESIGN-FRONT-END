@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   user: LoginModel;
 
   constructor(private router: Router) {
-    this.users = JSON.parse('' + localStorage.getItem('user'));
+    this.users = JSON.parse('' + localStorage.getItem('dpuser'));
     this.user = this.users[0];
   }
 
