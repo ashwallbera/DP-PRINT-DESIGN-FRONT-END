@@ -1,4 +1,15 @@
-import { Component, OnInit ,Inject, ViewChild} from '@angular/core';
+import {
+  HttpClient,
+  HttpEventType,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Specification } from 'src/app/services/_product-management/specification_model';
@@ -10,40 +21,49 @@ import { ProductService } from 'src/app/services/_product-management/product.ser
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
-  @ViewChild("chip") chiplist: ChipListComponent;
-  productName = "";
+  progress: number;
+  message: string;
+  serverPath: dbPath={
+    dbPath:"Resources//Images//no-product-image.png"
+  }; 
+
+  serverUploaded: any;
+  @Output() public onUploadFinished = new EventEmitter();
+  @ViewChild('chip') chiplist: ChipListComponent;
+  productName = '';
   product: ProductModel;
   identityForm: FormGroup;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   specification: Specification[] = [];
   identityofIdentity: ListOfIdentification[] = [];
-  constructor(public formBuilder: FormBuilder,public product_service: ProductService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public http: HttpClient,
+    public product_service: ProductService
+  ) {
     this.identityForm = this.formBuilder.group({
       name: '',
       identityArray: this.formBuilder.array([]),
     });
-
-    
-   }
+  }
 
   ngOnInit(): void {
     this.product = {
-      id: "",
-      name: "",
-      description: "",
-      imgUri: "AURI",
-      categoryid: "",
+      id: '',
+      name: '',
+      description: '',
+      imgUri: 'AURI',
+      categoryid: '',
       category: [],
       specification: [],
-      isDeleted: false ,
-    }
+      isDeleted: false,
+    };
+
   }
-
-
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -64,7 +84,7 @@ export class AddProductComponent implements OnInit {
 
       this.product.specification = this.specification;
       this.addIdentityFormMethod(value + '');
-     
+
       console.log(this.chiplist.getProduct());
     }
 
@@ -78,7 +98,7 @@ export class AddProductComponent implements OnInit {
     if (index >= 0) {
       this.specification.splice(index, 1);
       this.identityFormMethod().removeAt(index);
-      this.identityofIdentity.splice(index,1);
+      this.identityofIdentity.splice(index, 1);
     }
   }
 
@@ -126,16 +146,62 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  createProduct(){
+  createProduct() {
     console.log(this.productName);
+    this.product.imgUri = this.createImgPath(this.serverPath);
     this.product.category = this.chiplist.getProduct();
     console.log(this.product);
     this.product_service.createProduct(this.product);
   }
-  
 
+  uploadFile = (files: any) => {
+    if (files.length === 0) {
+      return;
+    }
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    this.http
+      .post('https://localhost:7118/api/upload', formData, {
+        reportProgress: true,
+        observe: 'events',
+      })
+      .subscribe({
+        next: (event) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            if(event.total){
+              this.progress = Math.round(100 * event.loaded / event.total);
+            }
+          } else if (event.type === HttpEventType.Response) {
+            this.message = 'Upload success.';
+            this.onUploadFinished.emit(event.body);
+            this.serverPath = event.body as dbPath
+            console.log(event.body);
+            console.log(this.serverPath);
+          }
+        },
+        error: (err: HttpErrorResponse) => console.log(err),
+      });
+  };
+
+  public createImgPath = (serverPath: dbPath) => { 
+    return `https://localhost:7118/${this.serverPath?.dbPath}`; 
+  }
+
+  public getImageFromServer(){
+
+  }
+
+  toDb(path: dbPath){
+    return path.dbPath;
+  }
+  
 }
 
 interface ListOfIdentification {
   identity: Identification[];
+}
+
+interface dbPath{
+  dbPath:string;
 }

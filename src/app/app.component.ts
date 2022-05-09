@@ -24,7 +24,7 @@ export class AppComponent {
     if(localStorage.hasOwnProperty('dpuser')){
       let user: LoginModel[] = JSON.parse(""+localStorage.getItem('dpuser'));
       console.log(JSON.parse(""+localStorage.getItem('dpuser')))
-      if(user[0].role == "dpuser"){
+      if(user[0].role == "user"){
         this._router.navigate(['/', 'userpage']);
       }
       else if(user[0].role == "admin"){

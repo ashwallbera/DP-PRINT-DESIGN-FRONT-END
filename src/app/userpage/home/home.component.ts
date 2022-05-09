@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   user: LoginModel;
 
   constructor() {
-    this.users = JSON.parse('' + localStorage.getItem('user'));
+    this.users = JSON.parse('' + localStorage.getItem('dpuser'));
     this.user = this.users[0];
   }
 

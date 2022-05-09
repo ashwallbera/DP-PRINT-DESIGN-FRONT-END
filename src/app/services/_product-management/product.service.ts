@@ -15,6 +15,11 @@ export class ProductService {
     return this.httpClient.get<ProductModel[]>(`${this.apiroot}`);
   }
 
+  public deleteProduct(id: string){
+    console.log(id);
+    return this.httpClient.delete<ProductModel[]>(`${this.apiroot}`+"?id="+id);
+  }
+
   public createProduct(product: ProductModel) {
     this.httpClient
       .post<ProductModel>(`${this.apiroot}`, {

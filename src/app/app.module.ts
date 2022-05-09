@@ -31,6 +31,7 @@ import { ShopNowDialogComponent } from './userpage/productservice/shop-now-dialo
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { AdminModule } from './admin/admin.module';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     SigninComponent,
     LoadingScreenComponent,
     SignupComponent,
-    ShopNowDialogComponent
+    ShopNowDialogComponent,
+    ConfirmDialogComponent
   
   ],
   imports: [
