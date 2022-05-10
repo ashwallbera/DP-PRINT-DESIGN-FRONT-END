@@ -1,17 +1,27 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, Inject, OnInit, Output,EventEmitter } from '@angular/core';
+import { COMMA, ENTER, P } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ProductModel } from 'src/app/services/_product-management/product_model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Specification } from 'src/app/services/_product-management/specification_model';
 import { Identification } from 'src/app/services/_product-management/identification_model';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
+
 @Component({
   selector: 'app-product-catalog',
   templateUrl: './product-catalog.component.html',
   styleUrls: ['./product-catalog.component.css'],
 })
 export class ProductCatalogComponent implements OnInit {
+  isUpdate = false;
+  progress: number;
+  message: string;
+  serverPath: dbPath={
+    dbPath:"Resources//Images//no-product-image.png"
+  }; 
+  @Output() public onUploadFinished = new EventEmitter();
+  serverUploaded: any;
   identityForm: FormGroup;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -19,7 +29,8 @@ export class ProductCatalogComponent implements OnInit {
   identityofIdentity: ListOfIdentification[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public product: ProductModel,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public http: HttpClient
   ) {
     this.identityForm = this.formBuilder.group({
       name: '',
@@ -39,6 +50,8 @@ export class ProductCatalogComponent implements OnInit {
         });
       }
     }
+
+    
   }
 
   add(event: MatChipInputEvent): void {
@@ -123,7 +136,53 @@ export class ProductCatalogComponent implements OnInit {
       console.log(this.product);
     }
   }
+
+  uploadFile = (files: any) => {
+    if (files.length === 0) {
+      return;
+    }
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    this.http
+      .post('https://localhost:7118/api/upload', formData, {
+        reportProgress: true,
+        observe: 'events',
+      })
+      .subscribe({
+        next: (event) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            if(event.total){
+              this.progress = Math.round(100 * event.loaded / event.total);
+            }
+          } else if (event.type === HttpEventType.Response) {
+            this.isUpdate = true;
+            this.message = 'Upload success.';
+            this.onUploadFinished.emit(event.body);
+            this.serverPath = event.body as dbPath
+            console.log(event.body);
+            console.log(this.serverPath);
+          }
+        },
+        error: (err: HttpErrorResponse) => console.log(err),
+      });
+  };
+
+  public createImgPath = (serverPath: dbPath) => { 
+    if(!this.isUpdate){
+      return this.product.imgUri;
+    }
+    return `https://localhost:7118/${this.serverPath?.dbPath}`; 
+  }
+
+  toDb(path: dbPath){
+    return path.dbPath;
+  }
 }
 interface ListOfIdentification {
   identity: Identification[];
+}
+
+interface dbPath{
+  dbPath:string;
 }
