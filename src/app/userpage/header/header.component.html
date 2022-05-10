@@ -1,12 +1,12 @@
 <mat-toolbar>
-  <mat-toolbar-row class="justify-content-between">
-    <button mat-icon-button (click)="toggleSidebar()">
+  <mat-toolbar-row class="justify-content-end">
+    <!-- <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>menu</mat-icon>
-    </button>
+    </button> -->
   
 
     <div class="d-flex justify-content-end">
-      <button mat-icon-button  style="height: auto !important;">
+      <button (click)="openCart()" mat-icon-button  style="height: auto !important;" *ngIf="isLoggin">
         <mat-icon>shopping_cart</mat-icon>
       </button>
       <button
@@ -24,9 +24,13 @@
         <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="logout()">
+        <button mat-menu-item (click)="logout()" *ngIf="users">
           <mat-icon>exit_to_app</mat-icon>
           Logout
+        </button>
+        <button mat-menu-item (click)="login()" *ngIf="!isLoggin">
+          <mat-icon>exit_to_app</mat-icon>
+          Login
         </button>
       </mat-menu>
 

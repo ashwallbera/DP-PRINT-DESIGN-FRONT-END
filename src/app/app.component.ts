@@ -33,7 +33,7 @@ export class AppComponent {
       
     }
     else{
-      this._router.navigate(['/', 'signin'])
+      this._router.navigate(['/', 'userpage'])
     }
 
     

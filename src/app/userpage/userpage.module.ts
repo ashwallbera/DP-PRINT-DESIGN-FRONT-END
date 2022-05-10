@@ -26,6 +26,7 @@ import { ViewOrderDialogComponent } from './myorders/view-order-dialog/view-orde
 import { ShopNowDialogComponent } from './productservice/shop-now-dialog/shop-now-dialog.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -38,6 +39,7 @@ import { MatSelectModule } from '@angular/material/select';
     ProductserviceComponent,
     MyordersComponent,
     ViewOrderDialogComponent,
+    CartComponent,
    //ShopNowDialogComponent,
     
   ],

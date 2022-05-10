@@ -10,12 +10,26 @@ import { LoginModel } from 'src/app/services/_login/login_model';
 export class HeaderComponent implements OnInit {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
 
+  isLoggin = false;
   users: LoginModel[];
   user: LoginModel;
 
   constructor(private router: Router) {
     this.users = JSON.parse('' + localStorage.getItem('dpuser'));
-    this.user = this.users[0];
+    if (this.users != null) {
+      this.user = this.users[0];
+      this.isLoggin = true;
+    } else {
+      this.user = {
+        id: '',
+        email: 'Please Login',
+        username: '',
+        password: '',
+        firstname: '',
+        lastname: '',
+        role: '',
+      };
+    }
   }
 
   ngOnInit(): void {}
@@ -27,5 +41,11 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigate(['/']);
+  }
+  openCart() {
+    this.router.navigate(['/cart']);
+  }
+  login(){
+    this.router.navigate(['/signin']);
   }
 }
