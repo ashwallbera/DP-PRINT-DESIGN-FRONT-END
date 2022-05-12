@@ -1,5 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ProductModel } from 'src/app/services/_product-management/product_model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -21,13 +27,28 @@ export class ShopNowDialogComponent implements OnInit {
     console.log(product.id);
   }
 
- 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
+      category: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
+      params: this._formBuilder.group({})
     });
+
+   
+
+    this.product.specification.forEach((param) => {
+      (this.secondFormGroup.get('params') as FormGroup).addControl(
+        param.name,
+        new FormControl()
+      );
+    });
+
+    
+  }
+
+  addToCart(product: any) {
+    console.log((this.secondFormGroup.get('params') as FormGroup).value)
+    console.log(product);
   }
 }

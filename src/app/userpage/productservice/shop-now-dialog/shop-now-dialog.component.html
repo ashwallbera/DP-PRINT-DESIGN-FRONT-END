@@ -1,30 +1,19 @@
 <h2 mat-dialog-title>Products</h2>
-<mat-dialog-content >
-      <form [formGroup]="firstFormGroup">
-     
-
-        <!-- Category -->
-        <div class="d-flex justify-content-start">
-          <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let c of product.category" [value]="c.name">
-                {{ c.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <!-- Specification -->
-        <div class="d-flex justify-content-between">
-          <mat-form-field appearance="outline" *ngFor="let i of product.specification">
-            <mat-label>{{i.name}}</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let x of i.identification" [value]="x.name"> {{x.name}} </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <!-- Identification -->
-        <!-- <div class="d-flex justify-content-start">
+<mat-dialog-content>
+  <form [formGroup]="firstFormGroup">
+    <!-- Category -->
+    <div class="d-flex justify-content-start">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let c of product.category" [value]="c.name">
+            {{ c.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Identification -->
+    <!-- <div class="d-flex justify-content-start">
           <mat-form-field appearance="outline" *ngFor="let i of category">
             <mat-label>Specification</mat-label>
             <mat-select>
@@ -32,12 +21,36 @@
             </mat-select>
           </mat-form-field>
         </div> -->
+  </form>
 
-      </form>
- 
-  
+  <form [formGroup]="secondFormGroup">
+    <!-- Specification -->
+    <div class="d-flex justify-content-between">
+      <mat-form-field
+        appearance="outline"
+        formGroupName="params"
+        *ngFor="let i of product.specification"
+      >
+        <mat-label>{{ i.name }}</mat-label>
+        <mat-select
+        
+          [formControlName]="i.name"
+        >
+          <mat-option *ngFor="let x of i.identification" [value]="x.name">
+            {{ x.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-dialog-close>OK</button>
+  <button
+    (click)="addToCart(secondFormGroup.value)"
+    mat-button
+    mat-dialog-close
+  >
+    CONFIRM
+  </button>
 </mat-dialog-actions>

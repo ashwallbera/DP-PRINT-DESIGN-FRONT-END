@@ -111,6 +111,7 @@ export class AddProductComponent implements OnInit {
 
   // Add FORM
   addIdentityFormMethod(name: string) {
+    console.log(name);
     this.identityFormMethod().push(this.newIdentityFormArrayMethod(name));
   }
 
@@ -124,7 +125,7 @@ export class AddProductComponent implements OnInit {
 
   //Add identity
   addIdentity(name: string, index: number) {
-    console.log(name);
+    console.log(index);
     if (name != '') {
       this.identityofIdentity[index].identity.push({
         name: name,
@@ -151,7 +152,7 @@ export class AddProductComponent implements OnInit {
     this.product.imgUri = this.createImgPath(this.serverPath);
     this.product.category = this.chiplist.getProduct();
     console.log(this.product);
-    this.product_service.createProduct(this.product);
+    //this.product_service.createProduct(this.product);
   }
 
   uploadFile = (files: any) => {

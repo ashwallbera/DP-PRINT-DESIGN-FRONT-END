@@ -178,6 +178,8 @@ export class ProductCatalogComponent implements OnInit {
   toDb(path: dbPath){
     return path.dbPath;
   }
+
+ 
 }
 interface ListOfIdentification {
   identity: Identification[];
