@@ -27,6 +27,10 @@
     <input matInput type="text" [(ngModel)]="product.name" placeholder="" />
   </mat-form-field>
   <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" [(ngModel)]="product.price" placeholder="" required/>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
     <mat-label>Description</mat-label>
     <input
       matInput

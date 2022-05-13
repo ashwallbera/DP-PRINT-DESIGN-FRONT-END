@@ -26,9 +26,9 @@ import { ProductService } from 'src/app/services/_product-management/product.ser
 export class AddProductComponent implements OnInit {
   progress: number;
   message: string;
-  serverPath: dbPath={
-    dbPath:"Resources//Images//no-product-image.png"
-  }; 
+  serverPath: dbPath = {
+    dbPath: 'Resources//Images//no-product-image.png',
+  };
 
   serverUploaded: any;
   @Output() public onUploadFinished = new EventEmitter();
@@ -40,6 +40,7 @@ export class AddProductComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   specification: Specification[] = [];
   identityofIdentity: ListOfIdentification[] = [];
+
   constructor(
     public formBuilder: FormBuilder,
     public http: HttpClient,
@@ -57,12 +58,12 @@ export class AddProductComponent implements OnInit {
       name: '',
       description: '',
       imgUri: 'AURI',
+      price: '',
       categoryid: '',
       category: [],
       specification: [],
       isDeleted: false,
     };
-
   }
 
   add(event: MatChipInputEvent): void {
@@ -152,8 +153,10 @@ export class AddProductComponent implements OnInit {
     this.product.imgUri = this.createImgPath(this.serverPath);
     this.product.category = this.chiplist.getProduct();
     console.log(this.product);
+    console.log(this.identityForm.valid);
     this.product_service.createProduct(this.product);
   }
+
 
   uploadFile = (files: any) => {
     if (files.length === 0) {
@@ -170,13 +173,13 @@ export class AddProductComponent implements OnInit {
       .subscribe({
         next: (event) => {
           if (event.type === HttpEventType.UploadProgress) {
-            if(event.total){
-              this.progress = Math.round(100 * event.loaded / event.total);
+            if (event.total) {
+              this.progress = Math.round((100 * event.loaded) / event.total);
             }
           } else if (event.type === HttpEventType.Response) {
             this.message = 'Upload success.';
             this.onUploadFinished.emit(event.body);
-            this.serverPath = event.body as dbPath
+            this.serverPath = event.body as dbPath;
             console.log(event.body);
             console.log(this.serverPath);
           }
@@ -185,24 +188,21 @@ export class AddProductComponent implements OnInit {
       });
   };
 
-  public createImgPath = (serverPath: dbPath) => { 
-    return `https://localhost:7118/${this.serverPath?.dbPath}`; 
-  }
+  public createImgPath = (serverPath: dbPath) => {
+    return `https://localhost:7118/${this.serverPath?.dbPath}`;
+  };
 
-  public getImageFromServer(){
+  public getImageFromServer() {}
 
-  }
-
-  toDb(path: dbPath){
+  toDb(path: dbPath) {
     return path.dbPath;
   }
-  
 }
 
 interface ListOfIdentification {
   identity: Identification[];
 }
 
-interface dbPath{
-  dbPath:string;
+interface dbPath {
+  dbPath: string;
 }

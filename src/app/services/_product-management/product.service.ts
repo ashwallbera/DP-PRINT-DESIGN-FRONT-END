@@ -27,6 +27,7 @@ export class ProductService {
         name: product.name,
         description: product.description,
         imgUri: product.imgUri,
+        price:product.price+"",
         categoryid: product.categoryid,
         category: product.category,
         specification: product.specification,

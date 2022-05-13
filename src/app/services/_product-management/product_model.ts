@@ -6,6 +6,7 @@ export interface ProductModel{
     name: string;
     description: string;
     imgUri: string;
+    price: string;
     categoryid: string;
     category: Category[];
     specification: Specification[];
