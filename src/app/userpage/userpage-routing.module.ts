@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
@@ -28,6 +29,11 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent,
       },
+      {
+        path:'checkout',
+        component:CheckoutComponent
+      },
+
     ],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },

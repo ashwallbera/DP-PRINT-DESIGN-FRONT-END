@@ -60,7 +60,17 @@ export class AdminProductComponent implements AfterViewInit {
   }
 
   openAddProductDialog() {
-    this.dialog.open(AddProductComponent,{
+    const dialogRef = this.dialog.open(AddProductComponent,{
+      
+    });
+   
+
+    dialogRef.afterClosed().subscribe(result => {
+     this.product_service.getProduct().subscribe((data) => {
+        this.products = data;
+        this.dataSource.data = data;
+        console.log(data);
+      });
     });
 
    }

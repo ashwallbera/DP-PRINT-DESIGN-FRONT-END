@@ -2,8 +2,8 @@
 <mat-dialog-content>
   <form [formGroup]="firstFormGroup">
     <!-- Category -->
-    <div class="d-flex justify-content-start">
-      <mat-form-field appearance="outline">
+    <div class="d-flex justify-content-start" >
+      <mat-form-field appearance="outline"  [hidden]="product.category.length != 0? false: true">
         <mat-label>Category</mat-label>
         <mat-select formControlName="category">
           <mat-option *ngFor="let c of product.category" [value]="c.name">

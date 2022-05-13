@@ -27,6 +27,10 @@ import { ShopNowDialogComponent } from './productservice/shop-now-dialog/shop-no
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -40,6 +44,7 @@ import { CartComponent } from './cart/cart.component';
     MyordersComponent,
     ViewOrderDialogComponent,
     CartComponent,
+    CheckoutComponent,
    //ShopNowDialogComponent,
     
   ],
@@ -61,7 +66,11 @@ import { CartComponent } from './cart/cart.component';
     MatCheckboxModule,
     MatDialogModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule
+
   ],
 })
 export class UserpageModule {}

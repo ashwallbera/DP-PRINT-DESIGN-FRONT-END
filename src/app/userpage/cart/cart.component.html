@@ -1,5 +1,51 @@
 <div fxFlex class="content-page">
-  <button mat-raised-button (click)="backToHome()">
-    <mat-icon class="mat-18">arrow_back</mat-icon>
-  </button>
+  <div style="margin: auto; width: 50%; height: 150px">
+    <button mat-raised-button (click)="backToHome()">
+      <mat-icon class="mat-18">arrow_back</mat-icon>
+    </button>
+
+    <br /><br />
+    <mat-card>
+      <h1>Order summary</h1>
+      <div class="d-flex justify-content-between">
+        <p>Subtotal(items)</p>
+        <p>₱100</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p>Shipping Fee</p>
+        <p>₱100</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <h3><b>Subtotal</b></h3>
+        <p>₱100</p>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button mat-raised-button (click)="openCheckout()">PROCEED TO CHECKOUT</button>
+      </div>
+    </mat-card>
+    <br /><br />
+    <mat-card style="height: 135px">
+      <div>
+        <table>
+          <tr>
+            <td>
+              <img
+                src="https://localhost:7118/Resources\Images\ab1a49c0-f147-4538-a095-e26c0e9c94d3.jpg"
+                alt=""
+                style="width: 100px; height: 100px"
+              />
+            </td>
+            <td>
+              <p><b>SAMPLE DESCRIPTION</b></p>
+              <p>Item specification</p>
+            </td>
+            <td>
+              <p>₱100</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-card>
+  </div>
 </div>

@@ -51,4 +51,5 @@ export class ShopNowDialogComponent implements OnInit {
     console.log((this.secondFormGroup.get('params') as FormGroup).value)
     console.log(product);
   }
+
 }

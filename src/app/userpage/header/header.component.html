@@ -3,24 +3,32 @@
     <!-- <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>menu</mat-icon>
     </button> -->
-  
-
     <div class="d-flex justify-content-end">
-      <button (click)="openCart()" mat-icon-button  style="height: auto !important;" *ngIf="isLoggin">
+      <button
+        (click)="openCart()"
+        mat-icon-button
+        style="height: auto !important"
+        *ngIf="isLoggin"
+      >
         <mat-icon>shopping_cart</mat-icon>
       </button>
+      <button
+        (click)="openCart()"
+        mat-icon-button
+        style="height: auto !important"
+        *ngIf="isLoggin"
+      >
+        <mat-icon>local_shipping</mat-icon>
+      </button>
+
       <button
         mat-button
         [matMenuTriggerFor]="menu"
         class="user mt-2 d-flex align-items-center"
       >
-        <img
-          src="./assets/image/user.png"
-          alt=""
-          class="user-image mr-1 p-2"
-        />
+        <img src="./assets/image/user.png" alt="" class="user-image mr-1 p-2" />
 
-        {{user.email}}
+        {{ user.email }}
         <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
