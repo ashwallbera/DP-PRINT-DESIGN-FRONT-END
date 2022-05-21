@@ -25,7 +25,7 @@
       </div>
     </mat-card>
     <br /><br />
-    <mat-card style="height: 135px">
+    <mat-card style="height: 135px" *ngFor="let cart of listOfCart">
       <div>
         <table>
           <tr>
@@ -37,11 +37,20 @@
               />
             </td>
             <td>
-              <p><b>SAMPLE DESCRIPTION</b></p>
-              <p>Item specification</p>
+              <p><b>PRODUCT NAME</b></p>
+              <p>{{cart.specification}}</p>
             </td>
             <td>
-              <p>₱100</p>
+              <p>₱{{cart.price}}</p>
+            </td>
+            <td>
+                  <input 
+                    type="number" 
+                    min="1" 
+                    max="" 
+                    class="qty" 
+                    [value]="cart.qty"
+                 >
             </td>
           </tr>
         </table>

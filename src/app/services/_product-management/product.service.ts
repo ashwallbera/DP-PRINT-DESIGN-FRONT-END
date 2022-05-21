@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Cart } from './cart_model';
 import { ProductModel } from './product_model';
 
 let url = environment.api;
@@ -36,5 +37,18 @@ export class ProductService {
       .subscribe((data) => {
         console.log('create product success');
       });
+  }
+
+  public addToCart(cart: Cart){
+    this.httpClient.post<Cart>(`${this.apiroot}`,{
+      id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      customerid: cart.customerid,
+      productId: cart.productid,
+      specification: cart.specification,
+      price: cart.price,
+      created:"SAMPLE",
+      isDeleted: true
+
+    })
   }
 }

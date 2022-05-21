@@ -31,6 +31,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ShippingComponent } from './shipping/shipping.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -45,6 +47,7 @@ import { MatInputModule } from '@angular/material/input';
     ViewOrderDialogComponent,
     CartComponent,
     CheckoutComponent,
+    ShippingComponent,
    //ShopNowDialogComponent,
     
   ],
@@ -69,7 +72,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule
 
   ],
 })

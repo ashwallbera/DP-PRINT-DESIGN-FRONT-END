@@ -48,4 +48,7 @@ export class HeaderComponent implements OnInit {
   login(){
     this.router.navigate(['/signin']);
   }
+  openShipping(){
+    this.router.navigate(['/shipping']);
+  }
 }

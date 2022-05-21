@@ -72,6 +72,7 @@ export class ShopNowDialogComponent implements OnInit {
       specification: specificationString,
       price: this.product.price,
       created: 'sample data',
+      qty:1,
       isDeleted: false,
     };
     console.log(this.cartPost);

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
 import { MyordersComponent } from './myorders/myorders.component';
 import { ProductserviceComponent } from './productservice/productservice.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path:'checkout',
         component:CheckoutComponent
+      },
+      {
+        path:'shipping',
+        component:ShippingComponent
       },
 
     ],

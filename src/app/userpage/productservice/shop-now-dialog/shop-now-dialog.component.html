@@ -2,8 +2,10 @@
 <mat-dialog-content>
   <form [formGroup]="firstFormGroup">
     <!-- Category -->
-    <div class="d-flex justify-content-start" >
-      <mat-form-field appearance="outline"  [hidden]="product.category.length != 0? false: true"
+    <div class="d-flex justify-content-start">
+      <mat-form-field
+        appearance="outline"
+        [hidden]="product.category.length != 0 ? false : true"
       >
         <mat-label>Category</mat-label>
         <mat-select formControlName="category">
@@ -33,10 +35,7 @@
         *ngFor="let i of product.specification"
       >
         <mat-label>{{ i.name }}</mat-label>
-        <mat-select
-        
-          [formControlName]="i.name"
-        >
+        <mat-select [formControlName]="i.name">
           <mat-option *ngFor="let x of i.identification" [value]="x.name">
             {{ x.name }}
           </mat-option>
