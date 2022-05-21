@@ -1,8 +1,10 @@
+import { Cart } from "./cart_model";
+
 export interface Shipping{
-    ordName: string;
+    // ordName: string;
     ordStatus: string;
-    ordDesc: string;
+    // ordDesc: string;
     ordNum: number;
     ordAdd: string;
-    ordTotal: number;
+    //cart: Cart[];
 }

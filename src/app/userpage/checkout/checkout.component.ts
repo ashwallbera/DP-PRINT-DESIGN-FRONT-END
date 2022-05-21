@@ -9,7 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
+  thirdFormGroup: FormGroup;
+ 
   constructor(private _formBuilder: FormBuilder) {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
@@ -17,6 +18,11 @@ export class CheckoutComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required],
+    });
+
+   
   }
 
   ngOnInit() {
@@ -25,6 +31,12 @@ export class CheckoutComponent implements OnInit {
 
   openCheckout(){
     
+  }
+
+  getInfo(){
+    console.log(this.firstFormGroup); 
+    console.log(this.secondFormGroup); 
+    console.log(this.thirdFormGroup); 
   }
 
 }

@@ -5,35 +5,61 @@
           </button>
       
           <br /><br />
-          <mat-expansion-panel hideToggle>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false" *ngFor = "let shipping of listOfShipping" >
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Order 1
+                Order no: {{shipping.ordNum}}
               </mat-panel-title>
               <mat-panel-description>
-                Current Delivery Status
+                {{shipping.ordStatus}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Product Description</p>
-            <p>Order 123456789</p>
-            <p>Delivery Address</p>
-            <p>Total Summary</p>
+
+        
+            <table style="table-layout:fixed;">
+              <col width="200px">
+              <col width="300px">
+
+              <tr>
+                <th></th>
+                <th>Shipping Address: {{shipping.ordAdd}} </th>
+                <th>qty</th>
+                <th>Sub total</th>
+              </tr>
+
+
+              <tr>
+                <td>
+                  <img
+                    src="https://localhost:7118/Resources\Images\ab1a49c0-f147-4538-a095-e26c0e9c94d3.jpg"
+                    alt=""
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+
+                <td>
+                  <p><b>PRODUCT NAME</b></p>
+                  <p>ghdfg</p>
+                </td>
+
+                <td>
+                    <p>123</p>
+                </td>
+
+                <td>
+                  <p>₱9789</p>
+                </td>
+
+                
+              </tr>
+
+             
+            </table>
+              
           </mat-expansion-panel>
           <br /><br />
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Order 2
-              </mat-panel-title>
-              <mat-panel-description>
-                Current Delivery progress
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>Product Description</p>
-            <p>Order 123456789</p>
-            <p>Delivery Address</p>
-            <p>Total Summary</p>
-          </mat-expansion-panel>
+        
          
         </div>
       </div>

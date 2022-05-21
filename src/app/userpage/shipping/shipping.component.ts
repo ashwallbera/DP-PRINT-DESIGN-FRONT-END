@@ -10,9 +10,18 @@ import { Shipping } from 'src/app/services/_product-management/shipping_model';
 })
 export class ShippingComponent implements OnInit {
   listOfShipping: Shipping[] = [];
-  constructor(
-    public router: Router
-  ) { }
+  panelOpenState = false;
+  constructor(public router: Router
+  ) { 
+
+    this.listOfShipping.push({
+      ordStatus:"Out for delivery",
+      ordNum:12345678,
+      ordAdd:"jhfjagfdgfjgsdjf",
+    });
+
+
+  }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,6 @@
 <mat-dialog-content>
   <mat-stepper labelPosition="bottom" #stepper>
+
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>FILL OUT YOUR INFORMATION</ng-template>
@@ -17,6 +18,7 @@
         </div>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>BILLING & SHIPPING ADDRESS</ng-template>
@@ -34,9 +36,28 @@
         </div>
       </form>
     </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>SELECT PAYMENT METHOD</ng-template>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Payment Method</mat-label>
+              <mat-select required formControlName="thirdCtrl">
+                <mat-option value="option1">Cash on Delivery</mat-option>
+                <mat-option value="option2" disabled>Card (not available)</mat-option>
+                <mat-option value="option3" disabled>GCash (not available)</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+
+
   </mat-stepper>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>CONFIRM</button>
+  <button mat-button (click)="getInfo()" [mat-dialog-close]="true" cdkFocusInitial>CONFIRM</button>
 </mat-dialog-actions>
