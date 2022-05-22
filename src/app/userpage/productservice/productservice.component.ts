@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Cart } from 'src/app/services/_product-management/cart_model';
 import { ProductService } from 'src/app/services/_product-management/product.service';
 import { ProductModel } from 'src/app/services/_product-management/product_model';
 import { ShopNowDialogComponent } from './shop-now-dialog/shop-now-dialog.component';
@@ -36,7 +37,8 @@ export class ProductserviceComponent implements OnInit {
    
   }
 
-  addToCard(product: any) {
+  addToCard(product: Cart) {
+    this.product_service.addToCart(product);
     console.log(product);
   }
 

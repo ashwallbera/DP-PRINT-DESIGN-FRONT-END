@@ -10,6 +10,7 @@ import { ProductModel } from 'src/app/services/_product-management/product_model
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Cart } from 'src/app/services/_product-management/cart_model';
 import { LoginModel } from 'src/app/services/_login/login_model';
+import { ProductService } from 'src/app/services/_product-management/product.service';
 
 @Component({
   selector: 'app-shop-now-dialog',
@@ -24,7 +25,8 @@ export class ShopNowDialogComponent implements OnInit {
   user:LoginModel[];
   constructor(
     private _formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public product: ProductModel
+    @Inject(MAT_DIALOG_DATA) public product: ProductModel,
+    public product_service: ProductService
   ) {
     console.log(product);
     console.log(product.id);
@@ -73,8 +75,11 @@ export class ShopNowDialogComponent implements OnInit {
       price: this.product.price,
       created: 'sample data',
       qty:1,
+      product,
       isDeleted: false,
     };
     console.log(this.cartPost);
+
+    this.product_service.addToCart(this.cartPost);
   }
 }

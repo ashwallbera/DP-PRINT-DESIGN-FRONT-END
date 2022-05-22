@@ -1,42 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { LoginModel } from 'src/app/services/_login/login_model';
+import { Cart } from 'src/app/services/_product-management/cart_model';
+import { ProductService } from 'src/app/services/_product-management/product.service';
+import { Shipping } from 'src/app/services/_product-management/shipping_model';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
- 
-  constructor(private _formBuilder: FormBuilder) {
+  
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    public product_service: ProductService,
+    @Inject(MAT_DIALOG_DATA) public cart: Cart[],
+    public router: Router
+  ) {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['', Validators.required],
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required],
     });
 
-   
+    console.log(cart);
   }
 
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 
-  openCheckout(){
+  openCheckout() {}
+
+  getInfo() {
+    let user: LoginModel[] = JSON.parse(""+localStorage.getItem('dpuser'));
+    console.log(this.firstFormGroup.get('firstCtrl')?.value);
+    console.log(this.secondFormGroup.get('secondCtrl')?.value);
+    console.log(this.thirdFormGroup.get('thirdCtrl')?.value);
+
+    // create shipping object
+    let v : Shipping;
+    v = {
+      id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      customerid: user[0].id,
+      orderno: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      status: "Order Received by admin",
+      address: this.secondFormGroup.get('secondCtrl')?.value+"",
+      fullname: this.firstFormGroup.get('firstCtrl')?.value+"",
+      paymentMethod: this.thirdFormGroup.get('thirdCtrl')?.value+"",
+      isDeleted: false,
+      cart: this.cart
+    }
+
+    this.product_service.addToShipping(v);
+    this.router.navigate(["/shipping"]);
+    // call the shipping api
     
+  
   }
-
-  getInfo(){
-    console.log(this.firstFormGroup); 
-    console.log(this.secondFormGroup); 
-    console.log(this.thirdFormGroup); 
-  }
-
 }

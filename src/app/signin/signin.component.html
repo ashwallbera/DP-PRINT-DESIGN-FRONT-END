@@ -18,14 +18,15 @@
             &nbsp;
           </span>
           <input
+            (change)="onType()"
+            (keyup)="onType()"
             type="email"
             matInput
             formControlName="username"
             placeholder="Ex. pat@dpprintdesign.com"
           />
           <mat-error *ngIf="checkError('username', 'required')"
-            >Valid email is required</mat-error
-          >
+            >Valid email is required</mat-error>
           <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
             Email is <strong>required</strong>
           </mat-error> -->
@@ -43,6 +44,8 @@
             &nbsp;
           </span>
           <input
+          (change)="onType()"
+            (keyup)="onType()"
             type="password"
             matInput
             formControlName="password"

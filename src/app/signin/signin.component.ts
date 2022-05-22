@@ -58,6 +58,12 @@ export class SigninComponent implements OnInit {
     });
   }
 
+  onType(){
+    this.addProductForm.get('username')?.setErrors(null);
+    this.addProductForm.get('password')?.setErrors(null);
+        console.log("asdas")
+  }
+
   public checkError = (controlName: string, errorName: string) => {
     return this.addProductForm.controls[controlName].hasError(errorName);
   };

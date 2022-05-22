@@ -5,14 +5,14 @@
           </button>
       
           <br /><br />
-          <mat-expansion-panel (opened)="panelOpenState = true"
+          <mat-expansion-panel (opened)="panelOpenState = true" style="margin: 12px;"
           (closed)="panelOpenState = false" *ngFor = "let shipping of listOfShipping" >
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Order no: {{shipping.ordNum}}
+                Order no: {{shipping.orderno}}
               </mat-panel-title>
               <mat-panel-description>
-                {{shipping.ordStatus}}
+                {{shipping.status}}
               </mat-panel-description>
             </mat-expansion-panel-header>
 
@@ -21,34 +21,34 @@
               <col width="200px">
               <col width="300px">
 
-              <tr>
+              <tr >
                 <th></th>
-                <th>Shipping Address: {{shipping.ordAdd}} </th>
+                <th>Shipping Address: {{shipping.address}} </th>
                 <th>qty</th>
                 <th>Sub total</th>
               </tr>
 
 
-              <tr>
+              <tr *ngFor="let p of shipping.cart">
                 <td>
                   <img
-                    src="https://localhost:7118/Resources\Images\ab1a49c0-f147-4538-a095-e26c0e9c94d3.jpg"
+                    src="{{p.product?.imgUri}}"
                     alt=""
                     style="width: 100px; height: 100px"
                   />
                 </td>
 
                 <td>
-                  <p><b>PRODUCT NAME</b></p>
-                  <p>ghdfg</p>
+                  <p><b>{{p.product?.name}}</b></p>
+                  <p>{{p.specification}}</p>
                 </td>
 
                 <td>
-                    <p>123</p>
+                    <p>{{p.qty}}</p>
                 </td>
 
                 <td>
-                  <p>₱9789</p>
+                  <p>₱{{p.price}}</p>
                 </td>
 
                 

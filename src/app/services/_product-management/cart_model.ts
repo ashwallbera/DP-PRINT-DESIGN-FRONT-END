@@ -8,6 +8,6 @@ export interface Cart{
     price: string;
     created: string;
     qty: number;
-   // product:ProductModel;
+    product?:ProductModel;
     isDeleted: boolean;
 }

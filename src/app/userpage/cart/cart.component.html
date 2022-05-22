@@ -9,15 +9,16 @@
       <h1>Order summary</h1>
       <div class="d-flex justify-content-between">
         <p>Subtotal(items)</p>
-        <p>₱100</p>
+        <p>₱{{subtotal}}</p>
       </div>
       <div class="d-flex justify-content-between">
         <p>Shipping Fee</p>
-        <p>₱100</p>
+        <p>₱{{shipping}}</p>
       </div>
       <div class="d-flex justify-content-between">
-        <h3><b>Subtotal</b></h3>
-        <p>₱100</p>
+        <h3><b>Total</b></h3>
+        <p>₱{{total}}</p>
+        
       </div>
 
       <div class="d-flex justify-content-center">
@@ -25,33 +26,40 @@
       </div>
     </mat-card>
     <br /><br />
-    <mat-card style="height: 135px" *ngFor="let cart of listOfCart">
+    <mat-card style="height: 135px;margin: 10px;" *ngFor="let cart of listOfCart">
       <div>
         <table>
           <tr>
             <td>
               <img
-                src="https://localhost:7118/Resources\Images\ab1a49c0-f147-4538-a095-e26c0e9c94d3.jpg"
+                src="{{cart.product?.imgUri}}"
                 alt=""
                 style="width: 100px; height: 100px"
               />
             </td>
             <td>
-              <p><b>PRODUCT NAME</b></p>
+              <p><b>{{cart.product?.name}}</b></p>
               <p>{{cart.specification}}</p>
             </td>
             <td>
               <p>₱{{cart.price}}</p>
             </td>
             <td>
-                  <input 
+                <input 
+                    style="width:50px; outline: none;"
+                    #newqty 
                     type="number" 
                     min="1" 
                     max="" 
                     class="qty" 
-                    [value]="cart.qty"
+                    [ngModel]="cart.qty"
+                    (change)="somethingChanged(cart,newqty.value)"
+                    (keyup)="somethingChanged(cart,newqty.value)"
                  >
             </td>
+          
+
+            
           </tr>
         </table>
       </div>
