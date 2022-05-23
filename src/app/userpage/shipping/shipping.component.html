@@ -3,7 +3,6 @@
           <button mat-raised-button (click)="backToHome()">
             <mat-icon class="mat-18">arrow_back</mat-icon>
           </button>
-      
           <br /><br />
           <mat-expansion-panel (opened)="panelOpenState = true" style="margin: 12px;"
           (closed)="panelOpenState = false" *ngFor = "let shipping of listOfShipping" >
@@ -24,7 +23,7 @@
               <tr >
                 <th></th>
                 <th>Shipping Address: {{shipping.address}} </th>
-                <th>qty</th>
+                <th>Quantity</th>
                 <th>Sub total</th>
               </tr>
 

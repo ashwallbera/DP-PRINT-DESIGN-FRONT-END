@@ -2,6 +2,6 @@
     {{message}}
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close="yes">YES</button>
-    <button mat-button mat-dialog-close="no">NO</button>
+    <button mat-button mat-dialog-close="yes" >{{ok}}</button>
+    <button mat-button mat-dialog-close="no" [hidden]="isMessage">NO</button>
 </mat-dialog-actions>

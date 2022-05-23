@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { LoginModel } from 'src/app/services/_login/login_model';
 import { Cart } from 'src/app/services/_product-management/cart_model';
 import { ProductService } from 'src/app/services/_product-management/product.service';
@@ -78,17 +79,15 @@ export class CartComponent implements OnInit {
         data:this.listOfCart
       });
      
-
+      }
+      else{
+        const dialogRef = this.dialog.open(ConfirmDialogComponent,{
+          data: "There is no item in your cart to checkout!"
+        });
       }
     }
 
-   
-
-
-
-    
-  
-
+ 
   somethingChanged(cart: Cart,qty: string){
    if(qty != ""){
     // console.log(qty);

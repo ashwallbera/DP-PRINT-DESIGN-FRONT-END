@@ -7,9 +7,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./confirm-dialog.component.css']
 })
 export class ConfirmDialogComponent implements OnInit {
-  message = ""
+  message = "";
+  isMessage = false;
+  ok = "yes";
   constructor(@Inject(MAT_DIALOG_DATA) message: string) { 
-
+    if(message == "There is no item in your cart to checkout!"){
+      this.isMessage = true;
+      this.ok = "OK";
+    }else{
+      this.ok = "YES";
+    }
     this.message = message;
   }
 
