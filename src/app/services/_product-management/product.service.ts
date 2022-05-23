@@ -91,4 +91,22 @@ export class ProductService {
   public getAllShipping() {
     return this.httpClient.get<Shipping[]>(`${this.apiroot3}`);
   }
+
+  public updateProduct(product: ProductModel) {
+    this.httpClient
+      .put<ProductModel>(`${this.apiroot}`, {
+        id:product.id,
+        name: product.name,
+        description: product.description,
+        imgUri: product.imgUri,
+        price: product.price + '',
+        categoryid: product.categoryid,
+        category: product.category,
+        specification: product.specification,
+        isDeleted: product.isDeleted,
+      })
+      .subscribe((data) => {
+        console.log('update product success');
+      });
+  }
 }

@@ -7,6 +7,7 @@ import { Specification } from 'src/app/services/_product-management/specificatio
 import { Identification } from 'src/app/services/_product-management/identification_model';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
+import { ProductService } from 'src/app/services/_product-management/product.service';
 
 @Component({
   selector: 'app-product-catalog',
@@ -30,7 +31,8 @@ export class ProductCatalogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public product: ProductModel,
     public formBuilder: FormBuilder,
-    public http: HttpClient
+    public http: HttpClient,
+    public product_service: ProductService
   ) {
     this.identityForm = this.formBuilder.group({
       name: '',
@@ -160,6 +162,7 @@ export class ProductCatalogComponent implements OnInit {
             this.message = 'Upload success.';
             this.onUploadFinished.emit(event.body);
             this.serverPath = event.body as dbPath
+    
             console.log(event.body);
             console.log(this.serverPath);
           }
@@ -179,7 +182,12 @@ export class ProductCatalogComponent implements OnInit {
     return path.dbPath;
   }
 
- 
+  updateProduct(){
+    console.log(this.product);
+    this.product.imgUri = this.createImgPath(this.serverPath);
+    this.product_service.updateProduct(this.product);
+  }
+
 }
 interface ListOfIdentification {
   identity: Identification[];
