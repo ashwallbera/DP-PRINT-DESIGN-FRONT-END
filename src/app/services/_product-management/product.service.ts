@@ -87,4 +87,8 @@ export class ProductService {
   public getShiping(customerid: string) {
     return this.httpClient.get<Shipping[]>(`${this.apiroot3}`+"/customerid?customerid="+customerid);
   }
+
+  public getAllShipping() {
+    return this.httpClient.get<Shipping[]>(`${this.apiroot3}`);
+  }
 }

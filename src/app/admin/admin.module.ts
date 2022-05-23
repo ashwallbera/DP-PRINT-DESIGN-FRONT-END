@@ -28,6 +28,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { AddProductComponent } from './product/add-product/add-product.component';
+import { OrderpageComponent } from './orderpage/orderpage.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { AddProductComponent } from './product/add-product/add-product.component
     AdminProductComponent,
     ProductCatalogComponent,
     ChipListComponent,
-    AddProductComponent
+    AddProductComponent,
+    OrderpageComponent
   ],
   imports: [
     CommonModule,
@@ -63,6 +66,7 @@ import { AddProductComponent } from './product/add-product/add-product.component
     FormsModule,
     MatSelectModule,
     MatInputModule,
+    MatExpansionModule
   ]
 })
 export class AdminModule { }

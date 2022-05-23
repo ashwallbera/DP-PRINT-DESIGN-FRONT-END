@@ -1,0 +1,57 @@
+<div class="content-page">
+    <div style="margin: auto; width: 80%; height: 150px">
+        <mat-expansion-panel (opened)="panelOpenState = true" style="margin: 12px;"
+          (closed)="panelOpenState = false" *ngFor = "let shipping of listOfShipping" >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Order no: {{shipping.orderno}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{shipping.status}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+        
+            <table style="table-layout:fixed;">
+              <col width="200px">
+              <col width="300px">
+
+              <tr >
+                <th></th>
+                <th>Shipping Address: {{shipping.address}} </th>
+                <th>qty</th>
+                <th>Sub total</th>
+              </tr>
+
+
+              <tr *ngFor="let p of shipping.cart">
+                <td>
+                  <img
+                    src="{{p.product?.imgUri}}"
+                    alt=""
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+
+                <td>
+                  <p><b>{{p.product?.name}}</b></p>
+                  <p>{{p.specification}}</p>
+                </td>
+
+                <td>
+                    <p>{{p.qty}}</p>
+                </td>
+
+                <td>
+                  <p>₱{{p.price}}</p>
+                </td>
+
+                
+              </tr>
+
+             
+            </table>
+              
+          </mat-expansion-panel>
+    </div>
+</div>
