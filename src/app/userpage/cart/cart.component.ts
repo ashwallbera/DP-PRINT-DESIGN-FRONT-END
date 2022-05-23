@@ -73,10 +73,21 @@ export class CartComponent implements OnInit {
   }
 
   openCheckout() {
-    const dialogRef = this.dialog.open(CheckoutComponent, {
-      data:this.listOfCart
-    });
-  }
+    if(this.subtotal != 0){
+      const dialogRef = this.dialog.open(CheckoutComponent, {
+        data:this.listOfCart
+      });
+     
+
+      }
+    }
+
+   
+
+
+
+    
+  
 
   somethingChanged(cart: Cart,qty: string){
    if(qty != ""){
@@ -88,5 +99,4 @@ export class CartComponent implements OnInit {
     this.getTotals();
    }
   }
-
 }

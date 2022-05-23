@@ -25,6 +25,7 @@
                 matInput
                 placeholder="FIRST NAME"
                 formControlName="firstname"
+                required
               />
 
               <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -45,6 +46,7 @@
                 matInput
                 placeholder="LAST NAME"
                 formControlName="lastname"
+                required
               />
 
               <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -65,6 +67,7 @@
               matInput
               formControlName="username"
               placeholder="Ex. pat@dpprintdesign.com"
+              required
             />
 
             <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -86,6 +89,7 @@
               matInput
               placeholder="PASSWORD"
               [type]="hide ? 'password' : 'text'"
+              required
             />
             <button
               mat-icon-button
@@ -110,7 +114,9 @@
               type="password"
               matInput
               placeholder="CONFIRM PASSWORD"
+              formControlName="cpassword"
               [type]="hide ? 'password' : 'text'"
+              required
             />
             <button
               mat-icon-button
@@ -130,6 +136,7 @@
             <tr>
               <td>
                 <button
+                  [disabled]="!loginValue.valid"
                   (click)="getValues(signupForms.value)"
                   mat-raised-button
                   class="half-width btn-ok"

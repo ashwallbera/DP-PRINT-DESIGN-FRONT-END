@@ -32,7 +32,8 @@ export class SignupComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      role: new FormControl('', [Validators.required]),
+      role: new FormControl(''),
+      cpassword: new FormControl('', [Validators.required]),
       
     });
 
@@ -45,10 +46,18 @@ export class SignupComponent implements OnInit {
   }
 
   getValues(val: LoginModel) {
+    if(val.password == (""+this.signupForms.get("cpassword")?.value)){
+      this.login_service.createuser(val);
+      this._router.navigate(['/signin'])
+    }
+    else{
+      this.signupForms.get("cpassword")?.setErrors({incorrect:true});
+      this.signupForms.get("password")?.setErrors({incorrect:true});
+    }
+    
     //this.addProductForm.get("username")?.value // get the specific form
     console.log(val);
-    this.login_service.createuser(val);
-    this._router.navigate(['/signin'])
+    
 
   }
 }
