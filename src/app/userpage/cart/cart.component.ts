@@ -13,7 +13,7 @@ import { CheckoutComponent } from '../checkout/checkout.component';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  listOfCart: Cart[];
+  listOfCart: Cart[] = [];
   product: ProductModel ;
 
   subtotal: number = 0;

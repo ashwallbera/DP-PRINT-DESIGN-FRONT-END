@@ -80,7 +80,7 @@ export class AddProductComponent implements OnInit {
       });
       this.specification.push({
         name: value,
-        identification: this.identityofIdentity[0].identity,
+        identification: this.identityofIdentity[this.identityofIdentity.length-1].identity,
       });
 
       this.product.specification = this.specification;
