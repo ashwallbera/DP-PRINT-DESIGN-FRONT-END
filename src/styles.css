@@ -8,7 +8,7 @@
   --size: 12px;
 }
 
-.background-color{
+.background-color {
   background-color: var(--primary) !important;
 }
 
@@ -30,7 +30,15 @@
 }
 html,
 body {
-  height: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary),
+    var(--secondary)
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 body {
   margin: 0;
@@ -45,7 +53,6 @@ body {
 }
 
 .content-page {
-  background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
   height: 100vh;
   padding: 20px;
 }
@@ -64,7 +71,7 @@ table {
   padding: 5px;
 }
 
-.mat-card-actions{
+.mat-card-actions {
   align-items: center !important;
   position: absolute;
   /* margin-left: -8px; */
@@ -75,8 +82,7 @@ table {
   bottom: 15px !important;
 }
 
-
-.my-full-screen-dialog{
+.my-full-screen-dialog {
   max-width: 100vw !important;
   /* width: 100% !important; */
   /* max-width: 100vw !important; */
@@ -86,11 +92,11 @@ table {
   overflow: hidden;
 }
 
-.my-full-screen-dialog .mat-dialog-container{
+.my-full-screen-dialog .mat-dialog-container {
   border-radius: 0 !important;
-  width:100vw;
+  width: 100vw;
   height: 100% !important;
-  margin:0;
+  margin: 0;
   padding: 0;
   overflow: hidden;
   /* background-color:rgba(0,0,0,.7); */
