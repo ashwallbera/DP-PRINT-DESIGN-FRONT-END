@@ -13,6 +13,8 @@
               <mat-panel-description>
                 {{shipping.status}}
               </mat-panel-description>
+              
+             
             </mat-expansion-panel-header>
 
         
@@ -21,10 +23,11 @@
               <col width="300px">
 
               <tr >
-                <th></th>
+                <th>Name: {{user.firstname}} {{user.lastname}}</th>
                 <th>Shipping Address: {{shipping.address}} </th>
                 <th>Quantity</th>
                 <th>Sub total</th>
+                <th><button mat-raised-button>Order Received</button></th>
               </tr>
 
 
@@ -38,8 +41,8 @@
                 </td>
 
                 <td>
-                  <p><b>{{p.product?.name}}</b></p>
-                  <p>{{p.specification}}</p>
+                  <p><b>Product Name: </b>{{p.product?.name}}</p>
+                  <p>{{p.specification}} </p>
                 </td>
 
                 <td>
@@ -49,7 +52,6 @@
                 <td>
                   <p>₱{{p.price}}</p>
                 </td>
-
                 
               </tr>
 

@@ -19,7 +19,7 @@ export class CheckoutComponent implements OnInit {
   thirdFormGroup: FormGroup;
   error = false;
   dialog: any;
-
+  user: LoginModel;
   constructor(
     private _formBuilder: FormBuilder,
     public product_service: ProductService,
@@ -36,6 +36,17 @@ export class CheckoutComponent implements OnInit {
       thirdCtrl: ['', Validators.required],
     });
 
+    let user: LoginModel[] = JSON.parse(""+localStorage.getItem('dpuser'));
+    this.user = {
+      id:user[0].id,
+      email:user[0].email,
+      username:user[0].username,
+      password:user[0].password,
+      firstname:user[0].firstname,
+      lastname:user[0].lastname,
+      role:user[0].role
+
+    }
     console.log(cart);
   }
 

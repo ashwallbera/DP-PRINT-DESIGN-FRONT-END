@@ -1,0 +1,49 @@
+h3{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+h4{
+    margin-left: 50px;
+    color: #7f8c8d;
+}
+h2{
+    margin-left: 10px;
+}
+.sd{
+  
+    width: 2000px;
+}
+
+.tagline{
+    color: #7f8c8d;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    margin-left: 20%;
+    margin-top: 15px;
+    font-size: 48px;
+}
+.tag{
+
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    margin-left: 20%;
+    margin-top: 15px;
+    color: #7f8c8d;
+    
+}
+
+.card{
+    background-color: rgba(199, 194, 194, 0.092);
+    height: 90%;
+    width: 90%;
+    margin:auto;
+}
+
+.prodTitle{
+    
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    color: #7f8c8d;
+    text-align: center;
+}

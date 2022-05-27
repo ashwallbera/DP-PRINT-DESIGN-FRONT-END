@@ -1,24 +1,6 @@
 <mat-dialog-content>
   <mat-stepper labelPosition="bottom" #stepper>
 
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>FILL OUT YOUR INFORMATION</ng-template>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Name</mat-label>
-          <input
-            matInput
-            placeholder="Last name, First name"
-            formControlName="firstCtrl"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button [disabled]="!firstFormGroup.valid" mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>BILLING & SHIPPING ADDRESS</ng-template>
@@ -50,6 +32,25 @@
         </mat-form-field>
         <div>
           <button  [disabled]="!thirdFormGroup.valid" mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>CONFIRM YOUR INFORMATION</ng-template>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            formControlName="firstCtrl"
+            [ngModel]="user.firstname"
+            required
+          />
+        </mat-form-field>
+        
+        <div>
+          <button [disabled]="!firstFormGroup.valid" mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
